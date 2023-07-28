@@ -1,13 +1,30 @@
 const express = require('express');
+const path = require('path');
 const app = express();
+const pathDirectory = path.join(__dirname, 'public');
+console.log('pathDirectory===>', pathDirectory);
+app.use(express.static(pathDirectory));
 
 app.get('/', (req, res)=>{
 
-    res.send('hi this is first express route');
+    res.sendFile(`${pathDirectory}/index.html`);
 });
+// app.get('/', (req, res)=>{
+
+//     res.send('<h1> Html tag being used</h1>');
+// });
+
 app.get('/about', (req, res)=>{
 
     res.send('hi this is first about route');
+});
+app.get('/home', (req, res)=>{
+
+    res.sendFile(`${pathDirectory}/home.html`);
+});
+app.get('/download', (req, res)=>{
+
+    res.download(`${pathDirectory}/index.html`);
 });
 
 app.listen(3000, ()=>{
