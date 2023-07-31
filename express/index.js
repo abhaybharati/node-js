@@ -2,6 +2,9 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const pathDirectory = path.join(__dirname, 'public');
+const router = require('./router')
+app.use(router);
+
 // console.log('pathDirectory===>', pathDirectory);
 // app.use(express.static(pathDirectory));
 
@@ -37,14 +40,3 @@ app.listen(3000, ()=>{
 app.set("view engine", "ejs");
 console.log(app.get("view engine"));
 console.log(path.join(__dirname, "views"));
-
-app.get('/', (req, res)=>{
-    res.render('index', {
-        title:'Index File'
-    })
-});
-app.get('/home', (req, res)=>{
-    res.render('home', {
-        title:'Home File'
-    })
-});
