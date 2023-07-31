@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%- include('../partial/meta.ejs') %>
     <title><%= title%></title>
 </head>
 <body>
    
     <h1>This is Index page</h1>
     <a href="/download">Download</a>
+    <%- include('../partial/data.ejs') %>
+    <%- include('../partial/section.ejs') %>
 </body>
 </html>
