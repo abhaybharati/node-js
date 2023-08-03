@@ -81,3 +81,19 @@ res.send(deleteDataByid);
         res.status(500).send(error);
     }
 });
+
+// login
+
+app.post('/login', async(req, res)=>{
+try {
+    
+    
+    const userPhone = req.body.phone;
+    const getUser = await users.findOne({phone:userPhone});
+
+    res.send(getUser);
+    
+} catch (error) {
+    res.status(500).send(error);
+}
+});
