@@ -22,3 +22,62 @@ app.post('/',async(req,res)=>{
         res.status(404).send(error);
     }
 })
+
+app.get('/', async(req, res)=>{
+
+   try {
+    const getData = await users.find({});
+    res.send(getData);
+   } catch (error) {
+    
+    res.status(404).send(error);
+   }
+});
+
+// find data by id
+
+app.get('/user-by-id/:id', async(req, res)=>{
+
+    try {
+
+        const id = req.params.id;
+
+    const getidData =await users.findById({_id:id});
+    res.send(getidData);
+
+    } catch (error) {
+        
+        res.status(404).send(error);
+    }
+});
+
+// update data
+
+app.patch('/update/:id', async(req, res)=>{
+
+    try {
+        
+        const id = req.params.id;
+        // const requestData = new users(req.body);
+        const updateData = await users.findByIdAndUpdate({_id:id}, req.body,{new:true});
+        res.send(updateData);
+    } catch (error) {
+        
+        res.status(500).send(error);
+    }
+});
+// delete 
+
+app.delete('/delete/:id', async(req,res)=>{
+
+    try {
+        
+const id = req.params.id;
+const deleteDataByid = await users.findByIdAndDelete({_id:id});
+res.send(deleteDataByid);
+
+    } catch (error) {
+        
+        res.status(500).send(error);
+    }
+});
